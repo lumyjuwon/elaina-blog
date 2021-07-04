@@ -12,7 +12,7 @@ export namespace FormatUnifier {
     return formatDate;
   }
 
-  export function calculateDate(dateTime: Date) {
+  export function calculateDate(dateTime: number) {
     const date = new Date().getTime() - new Date(dateTime).getTime();
     let dateDiff = ``;
     if (date >= 60000) {

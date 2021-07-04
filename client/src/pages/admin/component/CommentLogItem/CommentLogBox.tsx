@@ -11,12 +11,14 @@ const Context = styled.div({
   padding: '.8rem',
   marginTop: '5px',
   marginBottom: '20px',
-  border: '1px solid',
+  border: '1px solid ',
+  borderColor: '#dfe0e2',
   borderRadius: '.4rem',
   justifyContent: 'left',
   flexDirection: 'column',
   '&:hover > p': {
-    color: '#50a3f1'
+    color: '#50a3f1',
+    cursor: 'pointer'
   }
 });
 
@@ -47,7 +49,7 @@ const UserImage = styled.img({
 });
 
 interface Props {
-  time: Date;
+  time: number;
   categoryTitle: string;
   postId: number;
   postTitle: string;
