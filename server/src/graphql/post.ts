@@ -85,8 +85,15 @@ export const postResolver = {
 
     async findSameCategoryPosts(_: any, args: { categoryId: number }) {
       try {
+        const removeMd = require('remove-markdown');
+
         const sameCategoryPosts: Post[] = await PostModel.find({ categoryId: args.categoryId });
         const categoryFindResult = await CategoryModel.findById(args.categoryId);
+
+        // Remove markdown from article preview
+        for (let posts of sameCategoryPosts) {
+          posts.article = removeMd(posts.article);
+        }
 
         return {
           post: sameCategoryPosts.reverse(),
