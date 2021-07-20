@@ -2,11 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
-
-import { theme } from 'src/styles';
-import { RootState } from 'src/redux/rootReducer';
-import { ThemeMode } from 'src/redux/common/type';
 
 const MenuContainer = styled.nav<{ currentNav: boolean }>((props) => ({
   listStyle: 'none',
@@ -40,7 +35,7 @@ const Menu = styled.p({
 interface Props {
   menu: string;
   href?: string;
-  onClick?: Function;
+  onClick?: () => void;
 }
 
 export function SideMenuItem(props: Props) {

@@ -5,12 +5,8 @@ import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 import gfm from 'remark-gfm';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
 
 import { RefInputBox, useWidth, Loading } from 'src/components';
-import { theme } from 'src/styles';
-import { RootState } from 'src/redux/rootReducer';
-import { ThemeMode } from 'src/redux/common/type';
 import { CategoryDetailType } from 'src/query/category';
 import { EDIT_POST, WRITE_POST } from 'src/query/post';
 import { useApollo } from 'src/apollo/apolloClient';
@@ -36,7 +32,7 @@ const EditorContainer = styled.div({
   flex: '1'
 });
 
-const Editor = styled.div((props) => ({
+const Editor = styled.textarea((props) => ({
   display: 'flex',
   width: '100%',
   flexDirection: 'column',
@@ -100,8 +96,8 @@ function Text(props: { children?: string }) {
 }
 
 enum Mode {
-  write = 'Editor',
-  preview = 'Preview'
+  Write = 'Editor',
+  Preview = 'Preview'
 }
 
 const DEFAULT_CATEGORY = '최신글';
@@ -118,9 +114,9 @@ interface Props {
 export function Writer(props: Props) {
   const width = useWidth();
   const router = useRouter();
-  const editor = useRef<HTMLDivElement>(null);
+  const editor = useRef<HTMLTextAreaElement>(null);
   const titleRef = useRef<HTMLInputElement>(null);
-  const [mode, setMode] = useState(Mode.write);
+  const [mode, setMode] = useState(Mode.Write);
   const [title, setTitle] = useState('');
   const [article, setArticle] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState(DEFAULT_CATEGORY);
@@ -131,7 +127,7 @@ export function Writer(props: Props) {
   const [editPost, { loading: editLoading }] = useMutation(EDIT_POST);
 
   useEffect(() => {
-    if (mode == Mode.write) {
+    if (mode == Mode.Write) {
       editor.current?.focus();
     }
   }, [mode]);
@@ -158,7 +154,7 @@ export function Writer(props: Props) {
     }
   }
 
-  function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+  function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
     if (e.key === 'Backspace') {
       if (editor.current?.textContent?.length === 0 && editor.current.childNodes.length === 1) {
         e.preventDefault();
@@ -166,18 +162,17 @@ export function Writer(props: Props) {
     }
   }
 
-  function handlePaste(e: React.ClipboardEvent<HTMLDivElement>) {
+  function handlePaste(e: React.ClipboardEvent<HTMLTextAreaElement>) {
     e.preventDefault();
     const clipedData = e.clipboardData.getData('text/plain').replaceAll('&#8203;', '');
-    console.log(clipedData.split('').map((t) => t === ''));
     document.execCommand('insertText', false, clipedData);
   }
 
   function handleButtonClick() {
-    if (mode === Mode.write) {
-      setMode(Mode.preview);
+    if (mode === Mode.Write) {
+      setMode(Mode.Preview);
     } else {
-      setMode(Mode.write);
+      setMode(Mode.Write);
     }
   }
 
@@ -254,7 +249,7 @@ export function Writer(props: Props) {
       return router.push('/admin/login');
     }
 
-    const id = +router.query['post-id'];
+    const id = +router.query['post-id']!;
 
     try {
       await editPost({
@@ -281,8 +276,8 @@ export function Writer(props: Props) {
   return (
     <Container>
       <EditorContainer>
-        <MoblieModeButton onClick={() => handleButtonClick()}>{mode === Mode.write ? Mode.preview : Mode.write}</MoblieModeButton>
-        {((width <= 767 && mode === Mode.write) || width > 767) && (
+        <MoblieModeButton onClick={() => handleButtonClick()}>{mode === Mode.Write ? Mode.Preview : Mode.Write}</MoblieModeButton>
+        {((width <= 767 && mode === Mode.Write) || width > 767) && (
           <>
             <CategorySelector
               categories={props.categories}
@@ -305,14 +300,7 @@ export function Writer(props: Props) {
               />
             </Title>
             <Menu ref={editor} setArticle={setArticle} />
-            <Editor
-              ref={editor}
-              contentEditable={true}
-              suppressContentEditableWarning={true}
-              onKeyDown={handleKeyDown}
-              onPaste={handlePaste}
-              onInput={parseTextContent}
-            >
+            <Editor ref={editor} onKeyDown={handleKeyDown} onPaste={handlePaste} onChange={parseTextContent}>
               <Text></Text>
             </Editor>
             <ButtonContainer>
@@ -329,12 +317,16 @@ export function Writer(props: Props) {
             </ButtonContainer>
           </>
         )}
-        {width <= 767 && mode === Mode.preview && (
-          <ReactMarkdown plugins={[gfm]} className={styles['markdown-body']} children={article}></ReactMarkdown>
+        {width <= 767 && mode === Mode.Preview && (
+          <ReactMarkdown plugins={[gfm]} className={styles['markdown-body']}>
+            {article}
+          </ReactMarkdown>
         )}
       </EditorContainer>
       <PreviewContainer>
-        <ReactMarkdown plugins={[gfm]} className={styles['markdown-body']} children={article}></ReactMarkdown>
+        <ReactMarkdown plugins={[gfm]} className={styles['markdown-body']}>
+          {article}
+        </ReactMarkdown>
       </PreviewContainer>
     </Container>
   );

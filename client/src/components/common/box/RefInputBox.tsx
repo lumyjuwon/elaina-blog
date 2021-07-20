@@ -1,10 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-
-// import { theme } from 'src/styles';
-import { RootState } from 'src/redux/rootReducer';
-import { ThemeMode } from 'src/redux/common/type';
 
 interface Styles {
   width?: string;
@@ -54,8 +49,8 @@ interface Props {
   minLength: number;
   maxLength: number;
   id?: string;
-  onFocus?: Function;
-  onBlur?: Function;
+  onFocus?: () => void;
+  onBlur?: () => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   placeholder?: string;
   styles?: Styles;
@@ -94,6 +89,8 @@ export const RefInputBox = React.forwardRef<HTMLInputElement, Props>((props, for
     />
   );
 });
+
+RefInputBox.displayName = 'RefInputBox';
 
 RefInputBox.defaultProps = {
   isValid: true

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faClock, faBuilding, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -63,7 +63,7 @@ interface Props {
 }
 
 export function ArticleInfo(props: Props) {
-  let timeOutId: number;
+  let timeOutId: ReturnType<typeof setTimeout>;
 
   const [isHover, setIsHover] = useState(false);
 

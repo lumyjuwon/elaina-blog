@@ -54,6 +54,7 @@ export function CategoryViewer(props: Props) {
   const enterEditMode = () => setIsEdit(true);
 
   const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     initialCategoryOrder.current = props.categories.map((category) => category._id);
   };
 
@@ -72,6 +73,7 @@ export function CategoryViewer(props: Props) {
   }, 400);
 
   const onDrop = async (e: React.DragEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     try {
       const changedOrder = props.categories.map((category) => category._id);
       if (initialCategoryOrder.current) {

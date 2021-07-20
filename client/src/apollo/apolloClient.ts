@@ -1,14 +1,15 @@
 import { useMemo } from 'react';
-import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import { ApolloClient, ApolloLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
 import { onError } from 'apollo-link-error';
+// import { merge } from 'lodash';
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 
-const link = new HttpLink({
-  uri: 'http://localhost:4000/graphql',
-  credentials: 'include'
-});
+// const link = new HttpLink({
+//   uri: 'http://localhost:4000/graphql',
+//   credentials: 'include'
+// });
 
 const uploadLink = createUploadLink({
   uri: 'http://localhost:4000/graphql',
@@ -24,7 +25,7 @@ function createApolloClient() {
     ssrMode: typeof window === 'undefined',
     // @ts-ignore
     link: ApolloLink.from([errorLink, uploadLink]),
-    cache: new InMemoryCache({ addTypename: false }),
+    cache: new InMemoryCache(),
     assumeImmutableResults: true,
     credentials: 'include'
   });

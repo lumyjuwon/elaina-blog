@@ -3,8 +3,8 @@ import { LangCode } from 'src/resources/languages';
 import { ActionTypes, CommonAction, CommonState, ThemeMode } from './type';
 
 export const initialCommonState: CommonState = {
-  theme: ThemeMode.light,
-  lang: LangCode.ko
+  theme: ThemeMode.LIGHT,
+  lang: LangCode.KO
 };
 
 export function commonReducer(state = initialCommonState, action: CommonAction) {

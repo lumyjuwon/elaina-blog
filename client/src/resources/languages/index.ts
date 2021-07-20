@@ -5,10 +5,10 @@ import Detactor from 'i18next-browser-languagedetector';
 import { Lang, LangCode } from './lang';
 
 const languages = {
-  [LangCode.en]: {
+  [LangCode.EN]: {
     translation: require('./en-us.json')
   },
-  [LangCode.ko]: {
+  [LangCode.KO]: {
     translation: require('./ko-kr.json')
   }
 };
@@ -21,7 +21,7 @@ detactor.init({
 
 i18n.use(detactor).use(initReactI18next).init({
   resources: languages,
-  fallbackLng: LangCode.en
+  fallbackLng: LangCode.EN
 });
 
 function getCurrentLangCode(): LangCode {

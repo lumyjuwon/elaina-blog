@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { GetServerSideProps } from 'next';
-import { useSelector } from 'react-redux';
 
-import { theme } from 'src/styles';
-import { RootState } from 'src/redux/rootReducer';
-import { ThemeMode } from 'src/redux/common/type';
 import { AlertStateType, initAlert, AlertBox } from 'src/components';
-import { appCommponProps, AppCommonProps } from 'src/pages/_app';
+import { appCommponProps } from 'src/pages/_app';
 import { trans, Lang } from 'src/resources/languages';
 
 import { AdminPageLayout } from '../component/AdminPageLayout';
@@ -20,9 +16,9 @@ const Container = styled.div({
 
 interface ServerSideProps {}
 
-interface Props extends AppCommonProps {}
+// interface Props extends AppCommonProps {}
 
-export default function ChangePassword(props: Props) {
+export default function ChangePassword() {
   // const themeMode: ThemeMode = useSelector<RootState, any>((state) => state.common.theme);
 
   const [alertState, setAlertState] = useState<AlertStateType>(initAlert);
@@ -69,6 +65,8 @@ export const getServerSideProps: GetServerSideProps<ServerSideProps> = async (co
       }
     };
   }
+
+  context.res.setHeader('Cache-Control', 'max-age=0, public, must-revalidate');
 
   return {
     props: {}

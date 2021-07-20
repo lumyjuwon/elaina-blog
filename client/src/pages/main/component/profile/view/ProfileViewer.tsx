@@ -1,5 +1,3 @@
-import styled, { keyframes, css } from 'styled-components';
-
 import { ProfileType } from 'src/query/profile';
 
 import { MemoizedProfileImageViewer } from './ProfileImageViewer';

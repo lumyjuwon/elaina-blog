@@ -37,7 +37,7 @@ export default function DevicePage(props: Props) {
         <PageTitle title={trans(Lang.DeviceManage)} />
         <DeviceContainer>
           {props.loginDevices.map((device) => {
-            return <DeviceItem device={device} />;
+            return <DeviceItem key={device.userUniqueId} device={device} />;
           })}
         </DeviceContainer>
       </Container>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { NextPageContext, InferGetServerSidePropsType, GetServerSideProps } from 'next';
+import { GetServerSideProps } from 'next';
 
 import { initApolloClient } from 'src/apollo/withApollo';
 import { GET_LATEST_POSTS, GET_LATEST_POSTS_PER_CATEGORY, LatestPostQueryReturnType } from 'src/query/post';

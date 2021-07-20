@@ -1,10 +1,5 @@
 import React from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import { useSelector } from 'react-redux';
-
-import { theme } from 'src/styles';
-import { RootState } from 'src/redux/rootReducer';
-import { ThemeMode } from 'src/redux/common/type';
 
 const Container = styled.div((props) => ({
   display: 'flex',
@@ -42,8 +37,6 @@ const RotatingIcon = styled.span(
 );
 
 export function Loading() {
-  // const themeMode: ThemeMode = useSelector<RootState, any>((state) => state.common.theme);
-
   return (
     <Container>
       <RotatingIcon>

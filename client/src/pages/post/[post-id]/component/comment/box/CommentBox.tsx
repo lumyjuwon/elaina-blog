@@ -34,31 +34,22 @@ export function CommentBox(props: Props) {
     const isAuth = AuthResponse.data.isAuth.isAuth;
 
     if (isAuth) {
-      try {
-        await editComment({
-          variables: {
-            _id: props.postId,
-            index: props.commentIndex,
-            newComment: commentContent
-          }
-        });
-      } catch (err) {
-        // NEED TO FIX: using throw for handling doesn't seems nice...
-        throw err;
-      }
+      await editComment({
+        variables: {
+          _id: props.postId,
+          index: props.commentIndex,
+          newComment: commentContent
+        }
+      });
     } else {
-      try {
-        await editComment({
-          variables: {
-            _id: props.postId,
-            index: props.commentIndex,
-            newComment: commentContent,
-            password
-          }
-        });
-      } catch (err) {
-        throw err;
-      }
+      await editComment({
+        variables: {
+          _id: props.postId,
+          index: props.commentIndex,
+          newComment: commentContent,
+          password
+        }
+      });
     }
 
     props.editComment(props.commentIndex, commentContent);

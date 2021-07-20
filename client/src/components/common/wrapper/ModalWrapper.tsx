@@ -1,21 +1,19 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled.div((props) => {
-  return {
-    display: 'flex',
-    position: 'fixed',
-    top: 0,
-    right: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    tabIndex: -1,
-    zIndex: 1000,
-    overflowX: 'hidden'
-  };
+const Wrapper = styled.div({
+  display: 'flex',
+  position: 'fixed',
+  top: 0,
+  right: 0,
+  width: '100%',
+  height: '100%',
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  justifyContent: 'center',
+  alignItems: 'center',
+  tabIndex: -1,
+  zIndex: 1000,
+  overflowX: 'hidden'
 });
 
 const WrapperInner = styled.div({

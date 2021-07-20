@@ -8,10 +8,10 @@ const Wrapper = styled.div({
 interface Props {
   children: JSX.Element;
   visible: boolean;
-  onClickOutside: Function;
+  onClickOutside: () => void;
 }
 
-export const FocusWrapper = React.forwardRef<HTMLDivElement, Props>((props: Props, forwardedRef) => {
+export const FocusWrapper = React.forwardRef<HTMLDivElement, Props>((props, forwardedRef) => {
   const focusRef = useRef<HTMLDivElement>(null);
 
   useImperativeHandle(forwardedRef, () => focusRef.current as HTMLDivElement);
@@ -39,3 +39,5 @@ export const FocusWrapper = React.forwardRef<HTMLDivElement, Props>((props: Prop
     return null;
   }
 });
+
+FocusWrapper.displayName = 'FocusWrapper';

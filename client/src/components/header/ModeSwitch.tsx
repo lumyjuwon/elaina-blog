@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import { ThemeMode } from 'src/redux/common/type';
-import { commonDispatch } from 'src/redux/common/dispatch';
-import { RootState } from 'src/redux/rootReducer';
 
 const Container = styled.div({
   display: 'flex',
@@ -76,12 +73,12 @@ export function ModeSwitch(props: Props) {
   useEffect(() => {
     if (isChecked) {
       // commonDispatch.SetThemeMode(ThemeMode.dark);
-      window.localStorage.setItem('mode', ThemeMode.dark);
-      props.changeThemeMode(ThemeMode.dark);
+      window.localStorage.setItem('mode', ThemeMode.DARK);
+      props.changeThemeMode(ThemeMode.DARK);
     } else {
       // commonDispatch.SetThemeMode(ThemeMode.light);
-      window.localStorage.setItem('mode', ThemeMode.light);
-      props.changeThemeMode(ThemeMode.light);
+      window.localStorage.setItem('mode', ThemeMode.LIGHT);
+      props.changeThemeMode(ThemeMode.LIGHT);
     }
   }, [isChecked]);
 

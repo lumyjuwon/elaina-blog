@@ -1,10 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
-import styled, { keyframes, css } from 'styled-components';
+import React, { useRef, useEffect } from 'react';
+import styled from 'styled-components';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSwatchbook } from '@fortawesome/free-solid-svg-icons';
 
-import { useWidth, FocusWrapper } from 'src/components';
 import { initApolloClient } from 'src/apollo/withApollo';
 import { FIND_POST_BY_ID, FIND_SAME_CATEGORY_POSTS, PostType } from 'src/query/post';
 import { GET_COMMENTS, CommentContainerType } from 'src/query/comment';

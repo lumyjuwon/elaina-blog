@@ -15,7 +15,7 @@ import { ButtonContainer } from './ButtonContainer';
 interface CropperProps {
   imageFile: File;
   onSave: (blob: Blob) => void;
-  onCancel: Function;
+  onCancel: () => void;
   visible: boolean;
 }
 

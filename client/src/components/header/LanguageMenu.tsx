@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faLanguage } from '@fortawesome/free-solid-svg-icons';
 
-import { RootState } from 'src/redux/rootReducer';
 import { commonDispatch } from 'src/redux/common/dispatch';
-import { LangCode, changeLang, getCurrentLangCode } from 'src/resources/languages';
+import { LangCode, changeLang } from 'src/resources/languages';
 
 import { DropDownMenu } from '../common/box/DropDownMenu';
 
@@ -34,12 +32,10 @@ const LanguageItem = styled.p((props) => ({
   }
 }));
 
-interface Props {}
-
-export function LanguageMenu(props: Props) {
+export function LanguageMenu() {
   const languages = {
-    [LangCode.ko]: '한국어',
-    [LangCode.en]: 'English'
+    [LangCode.KO]: '한국어',
+    [LangCode.EN]: 'English'
   };
 
   return (
@@ -55,13 +51,13 @@ export function LanguageMenu(props: Props) {
         }
         dropMenu={
           <>
-            {Object.keys(languages).map((code: any) => {
+            {Object.keys(languages).map((code: string) => {
               return (
                 <LanguageItem
                   key={code}
                   onClick={() => {
                     changeLang(code as LangCode);
-                    commonDispatch.SetLanguage(code);
+                    commonDispatch.SetLanguage(code as LangCode);
                   }}
                   // themeMode={themeMode}
                 >

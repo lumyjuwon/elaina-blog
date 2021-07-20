@@ -3,13 +3,9 @@ import styled from 'styled-components';
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
-import { useSelector } from 'react-redux';
 
 import { RefInputBox } from 'src/components';
-import { theme } from 'src/styles';
 import { LOGIN } from 'src/query/user';
-import { RootState } from 'src/redux/rootReducer';
-import { ThemeMode } from 'src/redux/common/type';
 import { appCommponProps } from 'src/pages/_app';
 
 const Container = styled.div({
@@ -79,11 +75,11 @@ const MessageBox = styled.div({
 
 interface ServerSideProps {}
 
-interface Props extends ServerSideProps {
-  cookie?: string;
-}
+// interface Props extends ServerSideProps {
+//   cookie?: string;
+// }
 
-export default function Login(props: Props) {
+export default function Login() {
   // const themeMode: ThemeMode = useSelector<RootState, any>((state) => state.common.theme);
 
   const router = useRouter();
@@ -95,7 +91,7 @@ export default function Login(props: Props) {
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   const [login] = useMutation(LOGIN, {
-    onCompleted: (data: any) => {
+    onCompleted: () => {
       router.replace(router.asPath);
     },
     onError: (err: Error) => {

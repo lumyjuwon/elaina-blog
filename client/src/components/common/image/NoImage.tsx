@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 interface Props {
   width: number;
   height: number;
@@ -17,7 +15,7 @@ export function NoImage(props: Props) {
       width={`${props.width}px`}
       height={`${props.height}px`}
       viewBox='89.437 -10.563 621.127 621.127'
-      enable-background='new 89.437 -10.563 621.127 621.127'
+      enableBackground='new 89.437 -10.563 621.127 621.127'
       xmlSpace='preserve'
     >
       <rect

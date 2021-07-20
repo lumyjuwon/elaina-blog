@@ -1,6 +1,6 @@
 export enum LangCode {
-  en = 'en',
-  ko = 'ko'
+  EN = 'EN',
+  KO = 'KO'
 }
 
 export enum Lang {

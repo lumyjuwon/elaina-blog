@@ -1,3 +1,5 @@
 import React from 'react';
 
-export function Preview() {}
+export function Preview() {
+  return <div></div>;
+}

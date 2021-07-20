@@ -49,8 +49,8 @@ interface Props {
   maxLength: number;
   value: string;
   id?: string;
-  onFocus?: Function;
-  onBlur?: Function;
+  onFocus?: () => void;
+  onBlur?: () => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   placeholder?: string;
   styles?: Styles;

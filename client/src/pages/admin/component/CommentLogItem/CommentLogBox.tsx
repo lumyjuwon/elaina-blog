@@ -34,17 +34,17 @@ const EventAndDate = styled.p({
   opacity: '0.5'
 });
 
-const UserImage = styled.img({
-  display: 'block',
-  float: 'left',
-  width: '40px',
-  height: '40px',
-  marginRight: '5px',
-  objectFit: 'cover',
-  '@media screen and (max-width: 1380px)': {
-    width: '40px'
-  }
-});
+// const UserImage = styled.img({
+//   display: 'block',
+//   float: 'left',
+//   width: '40px',
+//   height: '40px',
+//   marginRight: '5px',
+//   objectFit: 'cover',
+//   '@media screen and (max-width: 1380px)': {
+//     width: '40px'
+//   }
+// });
 
 interface Props {
   time: number;

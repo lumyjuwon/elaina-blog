@@ -18,9 +18,7 @@ const NavName = styled.span({
   fontWeight: 'bold'
 });
 
-interface Props {}
-
-export function Navigation(props: Props) {
+export function Navigation() {
   return (
     <Container>
       <NavigationButton href='/'>

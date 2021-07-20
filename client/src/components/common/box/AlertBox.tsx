@@ -46,7 +46,7 @@ const CloseButton = styled.button({
 export interface AlertProps {
   msg: string;
   isError: boolean;
-  onCloseButtonClick: Function;
+  onCloseButtonClick: () => void;
 }
 
 export interface AlertStateType {

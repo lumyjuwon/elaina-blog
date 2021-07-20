@@ -1,5 +1,4 @@
 import React from 'react';
-import Head from 'next/head';
 import { ApolloClient, NormalizedCacheObject, InMemoryCache, ApolloLink } from '@apollo/client';
 import { GetServerSidePropsContext, NextPageContext } from 'next';
 import { createUploadLink } from 'apollo-upload-client';
@@ -57,10 +56,6 @@ export function withApollo(PageComponent: any, { ssr = true } = {}) {
             // https://www.apollographql.com/docs/react/api/react-apollo.html#graphql-query-data-error
             console.error('Error while running `getDataFromTree`', error);
           }
-
-          // getDataFromTree does not call componentWillUnmount
-          // head side effect therefore need to be cleared manually
-          Head.rewind();
         }
       }
 
@@ -100,7 +95,7 @@ function createApolloClient(
       headers: {
         ...init.headers,
         cookie: ctx?.req?.headers.cookie || '',
-        ['user-agent']: ctx?.req?.headers['user-agent']
+        'user-agent': ctx?.req?.headers['user-agent']
       }
     }).then((response) => {
       return response;

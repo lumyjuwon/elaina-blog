@@ -43,7 +43,7 @@ async function getCropImage(image: HTMLImageElement, imageName: string, imageTyp
 
   ctx?.drawImage(image, crop.x! * scaleX, crop.y! * scaleY, crop.width! * scaleX, crop.height! * scaleY, 0, 0, crop.width!, crop.height!);
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     canvas.toBlob(
       (blob: Blob | null) => {
         if (blob !== null) {
@@ -61,7 +61,7 @@ async function getCropImage(image: HTMLImageElement, imageName: string, imageTyp
 interface Props {
   imageFile: File;
   onSave: (blob: Blob) => void;
-  onCancel: Function;
+  onCancel: () => void;
   visible: boolean;
 }
 

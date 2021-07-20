@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { GET_CATEGORIES_WITH_DETAILS, CategoryDetailType } from 'src/query/category';
 import { initApolloClient } from 'src/apollo/withApollo';
-import { FIND_SAME_CATEGORY_POSTS, PostType } from 'src/query/post';
+import { FIND_SAME_CATEGORY_POSTS } from 'src/query/post';
 
 import { PostContainer } from './component/PostContainer';
 import { CategoryContainer } from './component/CategoryContainer';

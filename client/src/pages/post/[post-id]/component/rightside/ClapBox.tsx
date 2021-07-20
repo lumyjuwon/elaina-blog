@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp as solidThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faThumbsUp as regularThumbsUp, faComments } from '@fortawesome/free-regular-svg-icons';
 
 const Container = styled.aside({
@@ -43,7 +42,7 @@ const Number = styled.p({
 
 interface Props {
   commentsCount: number;
-  scrollToComment: Function;
+  scrollToComment: () => void;
 }
 
 export function ClapBox(props: Props) {

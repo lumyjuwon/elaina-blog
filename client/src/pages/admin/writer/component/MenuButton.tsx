@@ -1,16 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-
-import { theme } from 'src/styles';
-import { FormatBoldBlack } from 'src/resources/svg/FormatBoldBlack';
-import { RootState } from 'src/redux/rootReducer';
-import { ThemeMode } from 'src/redux/common/type';
-
-interface ContainerProps {
-  isActive: boolean;
-  // themeMode: ThemeMode;
-}
 
 const Toggle = styled.div({
   width: 'max-content',
@@ -50,7 +39,7 @@ interface Props {
   isActive: boolean;
   desc: string;
   children: JSX.Element;
-  onClick: Function;
+  onClick: () => void;
 }
 
 export function MenuButton(props: Props) {

@@ -2,13 +2,8 @@ import React from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-
-import { theme } from 'src/styles';
-import { RootState } from 'src/redux/rootReducer';
-import { ThemeMode } from 'src/redux/common/type';
 
 const Move = keyframes({
   from: {
@@ -135,8 +130,6 @@ interface Props {
 }
 
 export function PostCategory(props: Props) {
-  // const themeMode: ThemeMode = useSelector<RootState, any>((state) => state.common.theme);
-
   const router = useRouter();
 
   function handleWriteButtonClick() {

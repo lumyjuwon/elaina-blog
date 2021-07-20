@@ -1,5 +1,5 @@
-import { $CombinedState, applyMiddleware, createStore, Store } from 'redux';
-import { createMigrate, PersistConfig, persistReducer, persistStore, MigrationManifest } from 'redux-persist';
+import { applyMiddleware, createStore, Store } from 'redux';
+import { PersistConfig, persistReducer, persistStore } from 'redux-persist';
 import logger from 'redux-logger';
 import storage from 'redux-persist/lib/storage';
 

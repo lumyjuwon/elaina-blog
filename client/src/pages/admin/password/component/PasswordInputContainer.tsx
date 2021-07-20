@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import { useMutation } from '@apollo/client';
-import { useSelector } from 'react-redux';
 
-import { theme } from 'src/styles';
-import { RootState } from 'src/redux/rootReducer';
-import { ThemeMode } from 'src/redux/common/type';
 import { UPDATE_PASSWORD } from 'src/query/user';
 import { trans, Lang } from 'src/resources/languages';
 
@@ -35,8 +31,8 @@ const ForgotPassword = styled.p({
 });
 
 interface Props {
-  resetAlert: Function;
-  setSuccessAlert: Function;
+  resetAlert: () => void;
+  setSuccessAlert: () => void;
   setErrorAlert: (err: Error) => void;
 }
 

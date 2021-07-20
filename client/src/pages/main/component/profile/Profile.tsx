@@ -1,18 +1,12 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import dynamic from 'next/dynamic';
 
-import { AlertStateType } from 'src/components';
+import { AlertStateType, AlertProps } from 'src/components';
 import { ProfileType } from 'src/query/profile';
 
 import { ProfileEditor } from './edit/ProfileEditor';
 import { ProfileViewer } from './view/ProfileViewer';
-
-interface AlertProps {
-  msg: string;
-  isError: boolean;
-  onCloseButtonClick: Function;
-}
 
 const DynamicAlertBox = dynamic<AlertProps>(() => import('src/components').then((mod) => mod.AlertBox));
 

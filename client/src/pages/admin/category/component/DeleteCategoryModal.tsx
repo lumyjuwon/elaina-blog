@@ -1,21 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { useMutation } from '@apollo/client';
 
-import { RootState } from 'src/redux/rootReducer';
-import { ThemeMode } from 'src/redux/common/type';
-import { ModalWrapper, AlertStateType } from 'src/components';
-import { DELETE_CATEGORY, CategoryDetailType } from 'src/query/category';
-import { theme } from 'src/styles';
+import { ModalWrapper } from 'src/components';
+import { DELETE_CATEGORY } from 'src/query/category';
 import { useApollo } from 'src/apollo/apolloClient';
 import { IS_AUTH } from 'src/query/user';
 
-const ModalContainer = styled.div((props) => ({
+const ModalContainer = styled.div({
   width: '25rem',
   padding: '.5rem'
-}));
+});
 
 const ModalParagraph = styled.p({
   width: '100%'

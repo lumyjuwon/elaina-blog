@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 
@@ -17,9 +17,7 @@ const Button = styled.button({
   borderRadius: '.5rem'
 });
 
-interface Props {}
-
-export function AdminSideBar(props: Props) {
+export function AdminSideBar() {
   const router = useRouter();
 
   return (

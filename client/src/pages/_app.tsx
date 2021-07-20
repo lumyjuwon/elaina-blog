@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'styled-components';
 import type { AppContext } from 'next/app';
@@ -108,7 +108,7 @@ ElainaBlog.getInitialProps = async (context: AppContext) => {
   const combinedCookieHeader = data.isAuth.cookie;
   const cookies = setCookie.splitCookiesString(combinedCookieHeader || '');
 
-  let pageProps: AppCommonProps = {
+  const pageProps: AppCommonProps = {
     app: {
       isLogin
     }

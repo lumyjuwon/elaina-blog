@@ -1,15 +1,9 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-
-import { theme } from 'src/styles';
-import { RootState } from 'src/redux/rootReducer';
-import { ThemeMode } from 'src/redux/common/type';
 
 interface ButtonProps {
   isSelected: boolean;
-  // themeMode: string;
 }
 
 const NavButtons = styled.a<ButtonProps>((props) => {
@@ -35,8 +29,6 @@ interface Props {
 }
 
 export function NavigationButton(props: Props) {
-  // const themeMode: ThemeMode = useSelector<RootState, any>((state) => state.common.theme);
-
   const router = useRouter();
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
@@ -87,13 +87,13 @@ interface ServerSideProps {
 interface Props extends AppCommonProps, ServerSideProps {}
 
 export default function PostProps(props: Props) {
-  const [posts, setPosts] = useState<PostType[]>(props.posts);
+  // const [posts, setPosts] = useState<PostType[]>(props.posts);
 
   return (
     <AdminPageLayout>
       <Container>
         <PageTitle title={trans(Lang.BoardManage)} />
-        {posts.map((post) => {
+        {props.posts.map((post) => {
           return (
             <Link key={post.title + post._id} href={`/post/${post._id}`} passHref>
               <PostContainer>

@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBold, faItalic, faFont, faCode, faListUl, faQuoteLeft, faImages } from '@fortawesome/free-solid-svg-icons';
 
-import { FormatBoldBlack } from 'src/resources/svg/FormatBoldBlack';
-
 import { MenuButton } from './MenuButton';
 
 const Container = styled.div({
@@ -24,19 +22,26 @@ interface Props {
   setArticle: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const Menu = React.forwardRef((props: Props, ref: React.RefObject<HTMLDivElement>) => {
-  const selection: Selection = window.getSelection();
+export const Menu = React.forwardRef<HTMLTextAreaElement, Props>((props, forwardedRef) => {
+  const selection: Selection | null = window.getSelection();
 
-  function getNodeWithNodeName(startNode: Node, name: string): Node {
+  function getNodeWithNodeName(startNode: Node, name: string): Node | null {
     if (startNode.nodeName === name) {
       return startNode;
-    } else {
+    }
+
+    if (startNode.parentNode) {
       return getNodeWithNodeName(startNode.parentNode, name);
     }
+    return null;
   }
 
   function insertMarkdownStartAndEnd(startMarkdown: string, endMarkdown: string = startMarkdown) {
-    const selectionRange = selection.getRangeAt(0);
+    if (selection === null || forwardedRef === null) {
+      return;
+    }
+
+    // const selectionRange = selection.getRangeAt(0);
 
     if (selection.anchorNode === selection.focusNode) {
       if (selection.anchorOffset <= selection.focusOffset) {
@@ -47,8 +52,11 @@ export const Menu = React.forwardRef((props: Props, ref: React.RefObject<HTMLDiv
           endMarkdown +
           selection.anchorNode?.textContent?.slice(selection.focusOffset);
 
-        selection.anchorNode.textContent = newText;
-        ref.current?.focus();
+        if (selection.anchorNode) {
+          selection.anchorNode.textContent = newText;
+          // Need to focus!!!
+          // forwardedRef?.current!.focus();
+        }
         console.log(selection.getRangeAt(0));
         // selection.getRangeAt(0).setStart(getNodeWithNodeName(selection.focusNode, 'P'), selection.focusOffset + startMarkdown.length);
       } else {
@@ -59,8 +67,11 @@ export const Menu = React.forwardRef((props: Props, ref: React.RefObject<HTMLDiv
           endMarkdown +
           selection.anchorNode?.textContent?.slice(selection.anchorOffset);
 
-        selection.anchorNode.textContent = newText;
-        ref.current?.focus();
+        if (selection.anchorNode) {
+          selection.anchorNode.textContent = newText;
+        }
+        // Need to focus
+        // forwardedRef.current?.focus();
         // selectionRange.setStart(selection.anchorNode, selection.anchorOffset + startMarkdown.length);
       }
     } else {
@@ -73,19 +84,38 @@ export const Menu = React.forwardRef((props: Props, ref: React.RefObject<HTMLDiv
         endMarkdown +
         selection.focusNode?.textContent?.slice(selection.focusOffset);
 
-      selection.anchorNode.textContent = newAnchorText;
-      selection.focusNode.textContent = newFocusText;
-      ref.current?.focus();
+      if (selection.anchorNode && selection.focusNode) {
+        selection.anchorNode.textContent = newAnchorText;
+        selection.focusNode.textContent = newFocusText;
+      }
+      // Need to focus
+      // forwardedRef.current?.focus();
     }
-    props.setArticle(ref.current?.textContent);
+    // Need to FIX
+    // props.setArticle(forwardedRef.current?.textContent);
   }
 
   function insertMarkdownLineStart(markdown: string) {
+    if (selection === null || !selection.anchorNode || !selection.focusNode) {
+      return;
+    }
+
+    const findedNode = getNodeWithNodeName(selection.anchorNode, 'DIV');
+
+    if (findedNode === null) {
+      return;
+    }
+
     const NODE = 1;
-    const list = getNodeWithNodeName(selection.anchorNode, 'DIV').childNodes;
+    const list = findedNode.childNodes;
     const anchorParagraph = getNodeWithNodeName(selection.anchorNode, 'P');
     const focusParagraph = getNodeWithNodeName(selection.focusNode, 'P');
-    let insertFlag: boolean = false;
+
+    if (anchorParagraph === null || focusParagraph === null) {
+      return;
+    }
+
+    let insertFlag = false;
     for (const child of list.entries()) {
       if (anchorParagraph.isSameNode(child[NODE])) {
         insertFlag = true;
@@ -96,14 +126,14 @@ export const Menu = React.forwardRef((props: Props, ref: React.RefObject<HTMLDiv
 
       if (insertFlag) child[NODE].textContent = markdown + child[NODE].textContent;
     }
-    ref.current?.focus();
-    props.setArticle(ref.current?.textContent);
+    // Need to FIX
+    // forwardedRef.current?.focus();
+    // props.setArticle(forwardedRef.current?.textContent);
   }
 
   return (
     <Container contentEditable={false}>
       <MenuButton isActive desc='Bold' onClick={() => insertMarkdownStartAndEnd('**')}>
-        {/* <FormatBoldBlack /> */}
         <FontAwesomeIcon icon={faBold} />
       </MenuButton>
       <MenuButton isActive desc='Italic' onClick={() => insertMarkdownStartAndEnd('*')}>
@@ -121,9 +151,11 @@ export const Menu = React.forwardRef((props: Props, ref: React.RefObject<HTMLDiv
       <MenuButton isActive desc='Quote' onClick={() => insertMarkdownLineStart('> ')}>
         <FontAwesomeIcon icon={faQuoteLeft} />
       </MenuButton>
-      <MenuButton isActive desc='Upload Image' onClick={() => {}}>
+      <MenuButton isActive desc='Upload Image' onClick={() => alert('sorry...')}>
         <FontAwesomeIcon icon={faImages} />
       </MenuButton>
     </Container>
   );
 });
+
+Menu.displayName = 'Menu';

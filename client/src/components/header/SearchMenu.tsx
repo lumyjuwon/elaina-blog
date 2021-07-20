@@ -1,14 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-// import { theme } from 'src/styles';
 import { NoRefInputBox } from 'src/components';
-import { RootState } from 'src/redux/rootReducer';
-import { ThemeMode } from 'src/redux/common/type';
 import { trans, Lang } from 'src/resources/languages';
 
 const SearchButton = styled.button((props) => ({
@@ -43,11 +39,7 @@ const SearchForm = styled.form({
   justifyContent: 'center'
 });
 
-interface Props {}
-
-export function SearchMenu(props: Props) {
-  // const themeMode: ThemeMode = useSelector<RootState, any>((state) => state.common.theme);
-
+export function SearchMenu() {
   const router = useRouter();
   const [searchKeyword, setSearchKeyWord] = useState('');
 

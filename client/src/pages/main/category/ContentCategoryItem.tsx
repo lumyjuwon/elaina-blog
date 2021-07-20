@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { BorderBox, useWidth } from 'src/components';
+import { BorderBox } from 'src/components';
 import { CategoryDetailType } from 'src/query/category';
-import { PostType } from 'src/query/post';
 
 import { ContentCategoryDetails } from './ContentCategoryDetails';
 
@@ -15,19 +14,19 @@ const Content = styled.div({
   alignItems: 'center'
 });
 
-const PreviewImage = styled.img({
-  display: 'block',
-  float: 'right',
-  width: '260px',
-  height: '8.4rem',
-  marginLeft: '1rem',
-  objectFit: 'cover',
-  overflow: 'hidden',
-  '@media screen and (max-width: 1380px)': {
-    width: '32%',
-    marginLeft: '3%'
-  }
-});
+// const PreviewImage = styled.img({
+//   display: 'block',
+//   float: 'right',
+//   width: '260px',
+//   height: '8.4rem',
+//   marginLeft: '1rem',
+//   objectFit: 'cover',
+//   overflow: 'hidden',
+//   '@media screen and (max-width: 1380px)': {
+//     width: '32%',
+//     marginLeft: '3%'
+//   }
+// });
 
 const PreviewTextWrapper = styled.div({
   display: 'flex',
@@ -59,22 +58,22 @@ const LatestPostTitle = styled.p<{ null?: boolean }>((props) => ({
   '@media screen and (max-width: 1380px)': {}
 }));
 
-const LatestPostArticle = styled.p<{ null?: boolean }>((props) => ({
-  display: '-webkit-box',
-  width: '100%',
-  height: '4.5rem',
-  flexShrink: 0,
-  fontSize: '1.0rem',
-  margin: '.25rem 0 0',
-  wordBreak: 'keep-all',
-  textAlign: 'left',
-  overflow: 'hidden',
-  WebkitLineClamp: 3,
-  WebkitBoxOrient: 'vertical',
-  '&:hover': {
-    cursor: props.null ? 'default' : 'pointer'
-  }
-}));
+// const LatestPostArticle = styled.p<{ null?: boolean }>((props) => ({
+//   display: '-webkit-box',
+//   width: '100%',
+//   height: '4.5rem',
+//   flexShrink: 0,
+//   fontSize: '1.0rem',
+//   margin: '.25rem 0 0',
+//   wordBreak: 'keep-all',
+//   textAlign: 'left',
+//   overflow: 'hidden',
+//   WebkitLineClamp: 3,
+//   WebkitBoxOrient: 'vertical',
+//   '&:hover': {
+//     cursor: props.null ? 'default' : 'pointer'
+//   }
+// }));
 
 interface Props {
   category: CategoryDetailType;

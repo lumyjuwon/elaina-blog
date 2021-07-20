@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { InferGetServerSidePropsType, GetServerSideProps } from 'next';
+import { GetServerSideProps } from 'next';
 
 import { PostType, SEARCH } from 'src/query/post';
 import { initApolloClient } from 'src/apollo/withApollo';

@@ -2,23 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { InferGetServerSidePropsType, NextPageContext } from 'next';
 import { withRouter, NextRouter, useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
 
 import { Writer } from 'src/pages/admin/writer/component/Writer';
-import { theme } from 'src/styles';
-import { RootState } from 'src/redux/rootReducer';
-import { ThemeMode } from 'src/redux/common/type';
 import { AppCommonProps, appCommponProps } from 'src/pages/_app';
 import { initApolloClient } from 'src/apollo/withApollo';
 import { GET_PROFILE, ProfileType } from 'src/query/profile';
 import { CategoryDetailType, GET_CATEGORIES_WITH_DETAILS } from 'src/query/category';
 
-const Container = styled.div<{ themeMode: ThemeMode }>((props) => ({
+const Container = styled.div({
   display: 'flex',
   width: '100%',
   borderRadius: '.5rem',
   padding: '.5rem'
-}));
+});
 
 interface WithRouterProps {
   router: NextRouter;
@@ -35,7 +31,6 @@ function WriterPage(props: Props) {
   const profile: ProfileType = props.profile;
   const categoryTitleFromQuery = props.router.query.category as string | undefined;
   const categories: CategoryDetailType[] = props.categories;
-  const themeMode: ThemeMode = useSelector<RootState, any>((state) => state.common.theme);
 
   if (categoryTitleFromQuery && !categories.find((category) => category.title === categoryTitleFromQuery)) {
     alert('존재하지 않는 Category Title 입니다.');
@@ -43,7 +38,7 @@ function WriterPage(props: Props) {
   }
 
   return (
-    <Container themeMode={themeMode}>
+    <Container>
       {categoryTitleFromQuery ? (
         <Writer author={profile.name || ''} categories={categories} category={categoryTitleFromQuery} />
       ) : (

@@ -1,7 +1,7 @@
 import 'styled-components';
 
 declare module 'styled-components' {
-  export interface NavList {
+  interface NavList {
     selectedColor: string;
     selectedBorderLeft: string;
     hoverColor: string;
@@ -14,9 +14,9 @@ declare module 'styled-components' {
     textColor: string;
   }
 
-  export interface SubmitButton extends Button {}
+  interface SubmitButton extends Button {}
 
-  export interface DangerButton extends Button {}
+  interface DangerButton extends Button {}
 
   export interface DefaultTheme {
     themeColor: string;

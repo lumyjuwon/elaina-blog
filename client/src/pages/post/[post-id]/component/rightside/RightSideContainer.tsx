@@ -38,7 +38,7 @@ const StyledHr = styled.hr({
 
 interface Props {
   commentsCount: number;
-  scrollToComment: Function;
+  scrollToComment: () => void;
 }
 
 export function RightSideContainer(props: Props) {

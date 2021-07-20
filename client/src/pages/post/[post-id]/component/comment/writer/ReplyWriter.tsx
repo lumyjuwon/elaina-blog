@@ -1,5 +1,4 @@
 import { useMutation } from '@apollo/client';
-import { useRouter } from 'next/router';
 
 import { ReplyType, WRITE_REPLY } from 'src/query/comment';
 import { useApollo } from 'src/apollo/apolloClient';

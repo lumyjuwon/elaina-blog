@@ -3,10 +3,9 @@ import styled from 'styled-components';
 import { GetServerSideProps } from 'next';
 
 import { initApolloClient } from 'src/apollo/withApollo';
-import { CommentEvent, CommentLogType, GET_COMMENT_LOGS } from 'src/query/comment-log';
+import { CommentLogType, GET_COMMENT_LOGS } from 'src/query/comment-log';
 import CommnetLogBox from 'src/pages/admin/component/CommentLogItem/CommentLogBox';
 import { GET_CATEGORIES_WITH_DETAILS, CategoryDetailType } from 'src/query/category';
-import { BorderBox } from 'src/components/common/box/BorderBox';
 import { PostType, GET_POSTS } from 'src/query/post';
 import { trans, Lang } from 'src/resources/languages';
 

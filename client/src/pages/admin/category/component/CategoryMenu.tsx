@@ -61,22 +61,21 @@ export function CategoryMenu(props: Props) {
       return;
     }
 
-    const { data } = await updateCategory({
-      variables: {
-        id: props.id,
-        title: props.title
-      }
-    });
-
-    // response null-check
-    if (data.updateCategory) {
-      props.updateTitle(data.updateCategory.title);
-      props.setGreenAlert('Update category successfully.');
-    } else {
-      props.setRedAlert({ message: 'Cannot update category' });
-    }
-
     try {
+      const { data } = await updateCategory({
+        variables: {
+          id: props.id,
+          title: props.title
+        }
+      });
+
+      // response null-check
+      if (data.updateCategory) {
+        props.updateTitle(data.updateCategory.title);
+        props.setGreenAlert('Update category successfully.');
+      } else {
+        props.setRedAlert({ message: 'Cannot update category' });
+      }
     } catch (err) {
       props.setRedAlert(err);
     }

@@ -16,16 +16,16 @@ const Description = styled.p({
 
 const CategoryList = styled.ul({});
 
-const CategoryTitle = styled.p({
-  display: '-webkit-box',
-  width: '100%',
-  padding: '0 .5rem',
-  wordBreak: 'break-all',
-  textAlign: 'left',
-  overflow: 'hidden',
-  WebkitLineClamp: 1,
-  WebkitBoxOrient: 'vertical'
-});
+// const CategoryTitle = styled.p({
+//   display: '-webkit-box',
+//   width: '100%',
+//   padding: '0 .5rem',
+//   wordBreak: 'break-all',
+//   textAlign: 'left',
+//   overflow: 'hidden',
+//   WebkitLineClamp: 1,
+//   WebkitBoxOrient: 'vertical'
+// });
 
 interface Props {
   categories: CategoryDetailType[];

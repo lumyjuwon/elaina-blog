@@ -62,7 +62,7 @@ export function ArticleContainer(props: Props) {
   const [deletePost] = useMutation(DELETE_POST);
   const [deletePostAllCommentLog] = useMutation(DELETE_POST_ALL_COMMENT_LOG);
 
-  const id = router.query['post-id'];
+  const id = router.query['post-id']!;
 
   async function handleDeleteButtonClick() {
     const authResponse = await client.query({ query: IS_AUTH });

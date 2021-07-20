@@ -1,8 +1,8 @@
 import { LangCode } from 'src/resources/languages';
 
 export enum ThemeMode {
-  light = 'light',
-  dark = 'dark'
+  LIGHT = 'light',
+  DARK = 'dark'
 }
 
 export interface CommonState {

@@ -8,7 +8,7 @@ interface Props {
 
 export function ProgressBar(props: Props) {
   let progressPercent: number;
-  let increaseProgressInterval: number | undefined;
+  let increaseProgressInterval: ReturnType<typeof setTimeout> | undefined;
 
   const router = useRouter();
   const [progress, setProgress] = useState<number>(0);
@@ -28,7 +28,8 @@ export function ProgressBar(props: Props) {
         progressPercent += Math.floor(Math.random() * (5 - 3) + 3);
         setProgress(progressPercent);
       } else {
-        clearInterval(increaseProgressInterval);
+        // Need to casting
+        clearInterval(increaseProgressInterval as unknown as number);
         increaseProgressInterval = undefined;
       }
     }, 500);

@@ -9,7 +9,6 @@ import { CategoryDetailType } from 'src/query/category';
 
 import { CategoryViewer } from './CategoryViewer';
 import { NewCategory } from './NewCategory';
-import { DeleteModalProps } from './DeleteCategoryModal';
 
 const DynamicAlertBox = dynamic<AlertProps>(() => import('src/components').then((mod) => mod.AlertBox));
 
@@ -62,7 +61,7 @@ export function CategoryContainer(props: Props) {
   const addNewCategory = (category: CategoryDetailType) => setCategories((prev) => [...prev, category]);
 
   const deleteCategory = (index: number) => {
-    const remainCategories = categories.filter((category) => category.order != index);
+    const remainCategories = categories.filter((category) => category.order !== index);
     const reorderedCategories = remainCategories.map((category) => {
       if (category.order > index) {
         return { ...category, order: category.order - 1 };
